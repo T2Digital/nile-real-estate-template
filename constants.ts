@@ -1,0 +1,117 @@
+import { Property, PropertyType, PropertyCategory, Location } from './types';
+
+export const PROPERTIES: Property[] = [
+  {
+    id: '1',
+    title: 'فيلا فاخرة في كمبوند النخيل',
+    type: PropertyType.VILLA,
+    category: PropertyCategory.COMPOUND,
+    location: Location.SHEIKH_ZAYED,
+    area: 450,
+    price: 15000000,
+    bedrooms: 5,
+    bathrooms: 4,
+    description: 'فيلا مستقلة بتصميم مودرن، حديقة خاصة ومسبح، تشطيب الترا سوبر لوكس.',
+    features: ['حمام سباحة', 'حديقة خاصة', 'أمن 24/7', 'جراج خاص'],
+    imageUrl: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&q=80&w=800',
+    mapCoordinates: { lat: 30.0444, lng: 31.2357 }
+  },
+  {
+    id: '2',
+    title: 'شقة بإطلالة بانورامية في التجمع',
+    type: PropertyType.APARTMENT,
+    category: PropertyCategory.COMPOUND,
+    location: Location.NEW_CAIRO,
+    area: 180,
+    price: 5500000,
+    bedrooms: 3,
+    bathrooms: 2,
+    description: 'شقة واسعة في الطابق الثالث تطل على اللاند سكيب مباشرة، بالقرب من الجامعة الأمريكية.',
+    features: ['تراس كبير', 'نادي صحي', 'مول تجاري قريب'],
+    imageUrl: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=800',
+    mapCoordinates: { lat: 30.0074, lng: 31.4913 }
+  },
+  {
+    id: '3',
+    title: 'بنتهاوس في العاصمة الإدارية',
+    type: PropertyType.PENTHOUSE,
+    category: PropertyCategory.BUILDING,
+    location: Location.NEW_CAPITAL,
+    area: 220,
+    price: 8200000,
+    bedrooms: 4,
+    bathrooms: 3,
+    description: 'بنتهاوس رائع بروف خاص في قلب العاصمة الإدارية، إطلالة على النهر الأخضر.',
+    features: ['روف خاص', 'سمارت هوم', 'جيم'],
+    imageUrl: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800',
+    mapCoordinates: { lat: 29.995, lng: 31.72 }
+  },
+  {
+    id: '4',
+    title: 'شقة أرضي بحديقة في زايد',
+    type: PropertyType.APARTMENT,
+    category: PropertyCategory.COMPOUND,
+    location: Location.SHEIKH_ZAYED,
+    area: 160,
+    price: 6000000,
+    bedrooms: 3,
+    bathrooms: 2,
+    description: 'شقة أرضي بحديقة خاصة 80 متر، موقع متميز بجوار الخدمات.',
+    features: ['حديقة خاصة', 'مدخل خاص', 'أمن'],
+    imageUrl: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=800',
+    mapCoordinates: { lat: 30.05, lng: 31.0 }
+  },
+  {
+    id: '5',
+    title: 'دوبلكس كلاسيك في المعادي',
+    type: PropertyType.DUPLEX,
+    category: PropertyCategory.BUILDING,
+    location: Location.MAADI,
+    area: 300,
+    price: 9000000,
+    bedrooms: 4,
+    bathrooms: 4,
+    description: 'دوبلكس بتشطيب كلاسيكي فاخر في سرايات المعادي، منطقة هادئة وراقية.',
+    features: ['غرفة خادمة', 'تشطيب رخام', 'مكان هادئ'],
+    imageUrl: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=800',
+    mapCoordinates: { lat: 29.96, lng: 31.25 }
+  },
+  {
+    id: '6',
+    title: 'توين هاوس في بيفرلي هيلز',
+    type: PropertyType.VILLA,
+    category: PropertyCategory.COMPOUND,
+    location: Location.SHEIKH_ZAYED,
+    area: 320,
+    price: 12500000,
+    bedrooms: 4,
+    bathrooms: 3,
+    description: 'توين هاوس موقع متميز جداً، نصف تشطيب، تسليم فوري.',
+    features: ['موقع مميز', 'نصف تشطيب', 'تسليم فوري'],
+    imageUrl: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80&w=800',
+    mapCoordinates: { lat: 30.06, lng: 30.98 }
+  },
+  {
+    id: '7',
+    title: 'شقة فندقية بالعاصمة الإدارية',
+    type: PropertyType.APARTMENT,
+    category: PropertyCategory.BUILDING,
+    location: Location.NEW_CAPITAL,
+    area: 90,
+    price: 4500000,
+    bedrooms: 1,
+    bathrooms: 1,
+    description: 'شقة فندقية مفروشة بالكامل، عائد استثماري مضمون.',
+    features: ['مفروش', 'عائد استثماري', 'خدمات فندقية'],
+    imageUrl: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=800',
+    mapCoordinates: { lat: 30.01, lng: 31.75 }
+  }
+];
+
+export const INITIAL_FILTERS = {
+  type: 'all',
+  location: 'all',
+  minPrice: 0,
+  maxPrice: 50000000,
+  minArea: 0,
+};
