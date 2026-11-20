@@ -9,7 +9,9 @@ import { INITIAL_FILTERS } from '../constants';
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { setFilters, toggleChat, favorites, compareList, clearCompare, language, toggleLanguage, t, isAdminLoggedIn } = useAppContext();
+  const { setFilters, toggleChat, favorites, compareList, clearCompare, language, toggleLanguage, t, isAdminLoggedIn, companySettings } = useAppContext();
+  const brandTitle = companySettings?.name || 'النيل';
+  const brandSlogan = companySettings?.nameEn || 'Real Estate Investment';
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isPropertiesDropdownOpen, setIsPropertiesDropdownOpen] = useState(false);
@@ -51,8 +53,8 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               <Building2 size={24} strokeWidth={2.5} />
             </div>
             <div>
-              <h1 className="text-2xl font-extrabold text-white leading-none tracking-tight">النيل</h1>
-              <span className="text-[10px] text-gold-400 font-bold tracking-[0.2em] uppercase block mt-0.5">Real Estate Investment</span>
+              <h1 className="text-xl md:text-2xl font-extrabold text-white leading-none tracking-tight">{brandTitle}</h1>
+              <span className="text-[10px] text-gold-400 font-bold tracking-[0.15em] uppercase block mt-0.5">{brandSlogan}</span>
             </div>
           </Link>
 
@@ -241,16 +243,22 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
           <div>
             <h3 className="text-2xl font-bold text-white mb-6">{t.contact}</h3>
             <div className="flex flex-col items-center md:items-start gap-4">
-              <a href="tel:19999" className="flex items-center gap-3 bg-white/5 hover:bg-gold-500 hover:text-nile-900 px-6 py-3 rounded-2xl transition duration-300 group border border-white/10">
+              <a href={`tel:${companySettings?.phone || '19999'}`} className="flex items-center gap-3 bg-white/5 hover:bg-gold-500 hover:text-nile-900 px-6 py-3 rounded-2xl transition duration-300 group border border-white/10">
                 <Phone size={20} className="text-gold-500 group-hover:text-nile-900 transition-colors" /> 
-                <span className="font-bold text-lg tracking-wider">19999</span>
+                <span className="font-bold text-lg tracking-wider">{companySettings?.phone || '19999'}</span>
               </a>
-              <p className="text-gray-400">{language === 'ar' ? 'القاهرة الجديدة، التجمع الخامس، شارع التسعين' : 'New Cairo, 5th Settlement, 90th Street'}</p>
+              <p className="text-gray-400">{companySettings?.address || (language === 'ar' ? 'القاهرة الجديدة، التجمع الخامس، شارع التسعين' : 'New Cairo, 5th Settlement')}</p>
+              {(companySettings?.commercialRegister || companySettings?.taxCardNumber) && (
+                <div className="text-xs text-gold-300 bg-white/5 px-3 py-2 rounded-xl border border-white/10">
+                  {companySettings.commercialRegister && <div>سجل تجاري: <span className="font-mono">{companySettings.commercialRegister}</span></div>}
+                  {companySettings.taxCardNumber && <div>بطاقة ضريبية: <span className="font-mono">{companySettings.taxCardNumber}</span></div>}
+                </div>
+              )}
             </div>
           </div>
         </div>
         <div className="container mx-auto px-4 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-          <p>© 2024 Nile Real Estate Investment. All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} {brandTitle}. جميع الحقوق محفوظة.</p>
           <div className="flex gap-4 mt-4 md:mt-0">
              {/* Social placeholders */}
              <div className="w-8 h-8 rounded-full bg-white/5 hover:bg-gold-500 hover:text-nile-900 flex items-center justify-center transition cursor-pointer">FB</div>

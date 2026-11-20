@@ -8,6 +8,8 @@ export interface UniversalTenantConfig {
   accentColor?: string;
   phone?: string;
   whatsapp?: string;
+  email?: string;
+  adminEmail?: string;
   businessType?: string;
   commercialRegister?: string;
   taxCardNumber?: string;
@@ -16,6 +18,47 @@ export interface UniversalTenantConfig {
   studioLandingPageUrl?: string;
   planNameAr?: string;
   upgradeUrl?: string;
+}
+
+const FIRESTORE_SETTINGS_URL =
+  'https://firestore.googleapis.com/v1/projects/t2-content-studio/databases/(default)/documents/agency_settings';
+
+export function resolveRealEstateSlug(): string {
+  const b = (typeof window !== 'undefined' && (window as any).__TENANT_BRAND__) as UniversalTenantConfig | undefined;
+  const raw = b?.slug || b?.id || 'nile-real-estate';
+  return String(raw).toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-+|-+$/g, '') || 'nile-real-estate';
+}
+
+export async function loadRealEstateCloudState<T>(slug: string, key: string): Promise<T | null> {
+  try {
+    const docId = `t2_re_${slug}__${key}`;
+    const res = await fetch(`${FIRESTORE_SETTINGS_URL}/${encodeURIComponent(docId)}`);
+    if (!res.ok) return null;
+    const doc = await res.json();
+    const raw = doc?.fields?.stateJson?.stringValue;
+    if (!raw) return null;
+    return JSON.parse(raw) as T;
+  } catch {
+    return null;
+  }
+}
+
+export async function syncRealEstateCloudState(slug: string, key: string, data: any): Promise<void> {
+  try {
+    const docId = `t2_re_${slug}__${key}`;
+    await fetch(`${FIRESTORE_SETTINGS_URL}/${encodeURIComponent(docId)}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fields: {
+          slug: { stringValue: slug },
+          shard: { stringValue: key },
+          updatedAt: { stringValue: new Date().toISOString() },
+          stateJson: { stringValue: JSON.stringify(data) },
+        },
+      }),
+    });
+  } catch {}
 }
 
 const DEFAULT_TOKENS = ['النيل للاستثمار العقاري', 'شركة النيل للاستثمار العقاري', 'Nile Real Estate'];

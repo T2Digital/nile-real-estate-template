@@ -89,9 +89,26 @@ export interface Translations {
   bookViewing: string;
 }
 
+export interface CompanySettings {
+  name: string;
+  nameEn?: string;
+  slogan: string;
+  phone: string;
+  whatsapp: string;
+  email: string;
+  address?: string;
+  commercialRegister: string;
+  taxCardNumber: string;
+  defaultDownPaymentPct: number;
+  maxInstallmentYears: number;
+  annualInterestPct: number;
+  logoUrl?: string;
+}
+
 export interface AppContextType {
   bookings: Booking[];
   properties: Property[];
+  companySettings: CompanySettings;
   favorites: string[]; // List of Property IDs
   compareList: string[]; // List of Property IDs for comparison
   filters: FilterState;
@@ -106,6 +123,7 @@ export interface AppContextType {
   addProperty: (property: Property) => void;
   updateProperty: (property: Property) => void;
   deleteProperty: (id: string) => void;
+  updateCompanySettings: (updates: Partial<CompanySettings>) => void;
   toggleFavorite: (id: string) => void;
   toggleCompare: (id: string) => void;
   clearCompare: () => void;
