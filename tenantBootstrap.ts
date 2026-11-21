@@ -154,7 +154,7 @@ export async function initTenantBootstrap(): Promise<UniversalTenantConfig | nul
   const queryBrandId = params?.get('brandId') || params?.get('tenant');
   if (queryBrandId && (!brand || (brand.slug !== queryBrandId && brand.id !== queryBrandId))) {
     try {
-      const res = await fetch(`https://ez-zel.onrender.com/api/public/brand/${encodeURIComponent(queryBrandId)}`, {
+      const res = await fetch(`https://t2os.app/api/public/brand/${encodeURIComponent(queryBrandId)}`, {
         signal: AbortSignal.timeout(4000),
       });
       if (res.ok) {
@@ -183,7 +183,7 @@ export async function initTenantBootstrap(): Promise<UniversalTenantConfig | nul
       `<div style="max-width:460px;background:#0f172a;border:2px solid #f59e0b;border-radius:24px;padding:28px;text-align:center;">
         <h2 style="margin:0 0 10px;font-size:22px;font-weight:900;">تطبيق ${brand.name} متوقف مؤقتاً</h2>
         <p style="margin:0 0 18px;font-size:14px;color:#cbd5e1;">انتهت فترة التجربة. يرجى تفعيل الاشتراك عبر منظومة الظل لاستئناف التشغيل.</p>
-        <a href="${brand.upgradeUrl || 'https://ez-zel.onrender.com/pricing'}" target="_blank" rel="noreferrer" style="display:inline-block;padding:12px 20px;border-radius:12px;background:#f59e0b;color:#020617;font-weight:900;text-decoration:none;">تفعيل الاشتراك الآن</a>
+        <a href="${brand.upgradeUrl || 'https://t2os.app/pricing'}" target="_blank" rel="noreferrer" style="display:inline-block;padding:12px 20px;border-radius:12px;background:#f59e0b;color:#020617;font-weight:900;text-decoration:none;">تفعيل الاشتراك الآن</a>
       </div>`,
       999999
     );
@@ -199,7 +199,7 @@ export async function initTenantBootstrap(): Promise<UniversalTenantConfig | nul
           <h1 style="margin:0 0 8px;font-size:24px;font-weight:900;">${brand.name}</h1>
           <p style="margin:0 0 18px;font-size:14px;color:#cbd5e1;">${brand.slogan || DEFAULT_SUBTITLE}</p>
           ${waNum ? `<a href="${waHref}" target="_blank" rel="noreferrer" style="display:block;padding:12px;border-radius:12px;background:#25D366;color:#020617;font-weight:900;text-decoration:none;margin-bottom:12px;">💬 تواصل عبر واتساب</a>` : ''}
-          <a href="${brand.upgradeUrl || 'https://ez-zel.onrender.com/pricing'}" target="_blank" rel="noreferrer" style="display:inline-block;padding:10px 18px;border-radius:10px;background:#38bdf8;color:#020617;font-weight:900;text-decoration:none;">ترقية للنظام الكامل</a>
+          <a href="${brand.upgradeUrl || 'https://t2os.app/pricing'}" target="_blank" rel="noreferrer" style="display:inline-block;padding:10px 18px;border-radius:10px;background:#38bdf8;color:#020617;font-weight:900;text-decoration:none;">ترقية للنظام الكامل</a>
         </div>`,
         999998
       );
